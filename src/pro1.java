@@ -4246,42 +4246,51 @@ public class pro1 {
 		buffer = new byte[1000000];
 		fix_in = new FileInputStream("info1.asm");
 		len = fix_in.read(buffer);
+		if (len<0) len = 0;
 		fix_out.write(buffer,0,len);
 
 
 		buffer = new byte[1000000];
 		fix_in = new FileInputStream("result3.asm");
 		len = fix_in.read(buffer);
+		if (len<0) len = 0;
 		fix_out.write(buffer,0,len);
 
 		buffer = new byte[1000000];
 		fix_in = new FileInputStream("info2.asm");
 		len = fix_in.read(buffer);
+		if (len<0) len = 0;
 		fix_out.write(buffer,0,len);
 
 		buffer = new byte[1000000];
 		fix_in = new FileInputStream("info3.asm");
 		len = fix_in.read(buffer);
+		if (len<0) len = 0;
 		fix_out.write(buffer,0,len);
 
 		buffer = new byte[1000000];
 		fix_in = new FileInputStream("result1.asm");
 		len = fix_in.read(buffer);
+		if (len<0) len = 0;
 		fix_out.write(buffer,0,len);
 
 		buffer = new byte[1000000];
 		fix_in = new FileInputStream("info4.asm");
 		len = fix_in.read(buffer);
+		if (len<0) len = 0;
 		fix_out.write(buffer,0,len);
 
 		buffer = new byte[1000000];
 		fix_in = new FileInputStream("result2.asm");
 		len = fix_in.read(buffer);
+		if (len<0) len = 0;
+		//System.err.println(len);
 		fix_out.write(buffer,0,len);
 
 		buffer = new byte[1000000];
 		fix_in = new FileInputStream("info5.asm");
 		len = fix_in.read(buffer);
+		if (len<0) len = 0;
 		fix_out.write(buffer,0,len);
 
 
