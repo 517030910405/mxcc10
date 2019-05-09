@@ -4239,7 +4239,7 @@ public class pro1 {
 				else if (instr.name.equals("call substring")){
 					nasm_code.addAll(call_substring_cg(instr,i));
 				}
-				nasm_code.add(";"+instr.view());
+				//nasm_code.add(";"+instr.view());
 			}
 			for (String item: nasm_code){
 				os1.write((item+"\n").getBytes());
