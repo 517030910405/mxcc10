@@ -40,27 +40,27 @@ public class pro1 {
 	//assign is not atom
 	public static void dfs(node now,int i)throws Exception{
 		for (int f1=0;f1<i;++f1){
-			//System.out.print("    ");
+			//System.err.print("    ");
 		}
-		//System.out.print('(');
-//		System.out.print(i);
-//		System.out.print(',');
-//		System.out.print(now.type);
-//		System.out.print(',');
-//		System.out.print(now.name);
+		//System.err.print('(');
+//		System.err.print(i);
+//		System.err.print(',');
+//		System.err.print(now.type);
+//		System.err.print(',');
+//		System.err.print(now.name);
 		if (!now.data_type.equals("")) {
-//			System.out.print("[" + now.data_type + "]");
+//			System.err.print("[" + now.data_type + "]");
 		}
-		//System.out.print(',');
-//		System.out.println();
+		//System.err.print(',');
+//		System.err.println();
 		for (node item:now.son){
 			dfs(item,i+1);
 		}
 		if (now.type.equals("return")){
 			if (now.son.size()>1){
-				System.out.println();
-				System.out.println("CE");
-				System.out.println();
+				System.err.println();
+				System.err.println("CE");
+				System.err.println();
 				throw new Exception("CE_return");
 			}
 		}
@@ -79,10 +79,10 @@ public class pro1 {
 				throw new Exception("Variable Declaim CE");
 			}
 		}
-		//System.out.print(now.type);
-		//System.out.print(',');
-		//System.out.print(now.name);
-		//System.out.print(')');
+		//System.err.print(now.type);
+		//System.err.print(',');
+		//System.err.print(now.name);
+		//System.err.print(')');
 	}
 	//global function & class name
 	public static void dfs1(node now,int i) throws Exception{
@@ -95,7 +95,7 @@ public class pro1 {
 				throw new Exception("Class Name");
 			}
 			root1.scope.put(now.name,newname);
-			//System.out.println(now.name);
+			//System.err.println(now.name);
 		}
 		if (now.type.equals("function")){
 			varname newname = new varname();
@@ -107,7 +107,7 @@ public class pro1 {
 			}
 			root1.scope.put(now.name,newname);
 		}
-		//System.out.println(now.type);
+		//System.err.println(now.type);
 		if (i<=0){
 			for (node item:now.son){
 				dfs1(item,i+1);
@@ -123,7 +123,7 @@ public class pro1 {
 					newname.type = "function";
 					newname.name = item.name;
 					newname.location = item;
-					//System.out.println(item.name);
+					//System.err.println(item.name);
 					if (now.scope.containsKey(newname.name)){
 						throw new Exception("CE_Name_Function");
 					}
@@ -139,7 +139,7 @@ public class pro1 {
 				}
 			}
 		}
-		//System.out.println(now.type);
+		//System.err.println(now.type);
 		if (i<=0){
 			for (node item:now.son){
 				dfs2(item,i+1);
@@ -149,7 +149,7 @@ public class pro1 {
 	//input of function
 	public static void dfs3(node now,int i) throws Exception{
 		if (now.type.equals("class")){
-			//System.out.println(now.name);
+			//System.err.println(now.name);
 		}
 		if (now.type.equals("function")){
 			{
@@ -185,10 +185,10 @@ public class pro1 {
 				if (!thistype.type.equals("class")){
 					throw new Exception(nowson.name+"Is Not A Type");
 				}
-				//System.out.println(nowson.name);
+				//System.err.println(nowson.name);
 			}
 		}
-		//System.out.println(now.type);
+		//System.err.println(now.type);
 		if ((i<=0)||(now.type.equals("class"))){
 			for (node item:now.son){
 				dfs3(item,i+1);
@@ -219,8 +219,8 @@ public class pro1 {
 			newname.type = nowtype.name;
 			newname.location = now;
 			if (!root1.scope.containsKey(newname.type)){
-				System.out.println();
-				System.out.println(newname.type);
+				System.err.println();
+				System.err.println(newname.type);
 				throw new Exception("Invalid Type");
 			}
 			if (!root1.scope.get(newname.type).type.equals("class")){
@@ -230,13 +230,13 @@ public class pro1 {
 				throw new Exception("Variable Name Invalid");
 			}
 			{
-				//System.out.print("");
-				/*System.out.print(newname.name);
-				System.out.print(" ");
-				System.out.print(newname.type);
-				System.out.print(" ");
-				System.out.print(newname.array_dim);
-				System.out.println();*/
+				//System.err.print("");
+				/*System.err.print(newname.name);
+				System.err.print(" ");
+				System.err.print(newname.type);
+				System.err.print(" ");
+				System.err.print(newname.array_dim);
+				System.err.println();*/
 			}
 			if (scope_info.get(0).scope.containsKey(newname.name)&&
 					(scope_info.get(0).scope.get(newname.name).type.equals("class")
@@ -262,11 +262,11 @@ public class pro1 {
 		if (now.has_scope){
 			scope_info.add(now);
 		}
-//		System.out.print(now.type);
-//		System.out.print(" ");
-//		System.out.print(now.name);
-//		System.out.print(" ");
-//		System.out.println(scope_info.size());
+//		System.err.print(now.type);
+//		System.err.print(" ");
+//		System.err.print(now.name);
+//		System.err.print(" ");
+//		System.err.println(scope_info.size());
 		if (now.type.equals("variable")|| now.type.equals("input_variable")){
 			//scope_info.get(scope_info.size()-1).scope.get(now.son.get(1).name).activate =true;
 			//Nothing to do
@@ -310,7 +310,7 @@ public class pro1 {
 			}
 			if (now.data_type.equals("")){
 				int j=scope_info.size()-1;
-//				System.out.println(now.name);
+//				System.err.println(now.name);
 				while (j>=0&&((!scope_info.get(j).scope.containsKey(now.name))
 						||(!scope_info.get(j).scope.get(now.name).activate))){
 					j=j-1;
@@ -336,7 +336,7 @@ public class pro1 {
 					now.data_array_dim = 0;
 					now.left_value = false;
 				}else {
-					System.out.println("["+now.son.get(0).data_type+"]");
+					System.err.println("["+now.son.get(0).data_type+"]");
 					throw new Exception("Expression Type Error: operator = "+now.name);
 				}
 			} else
@@ -513,7 +513,7 @@ public class pro1 {
 				} else{
 					if (!(now.son.get(0).data_type.equals(now.son.get(1).data_type)
 							&& now.son.get(0).data_array_dim == now.son.get(1).data_array_dim)) {
-						System.out.println("["+now.son.get(0).data_type+"] ["+now.son.get(1).data_type+"]");
+						System.err.println("["+now.son.get(0).data_type+"] ["+now.son.get(1).data_type+"]");
 						throw new Exception("= is not available2");
 					}
 				}
@@ -738,7 +738,7 @@ public class pro1 {
 					throw new Exception("Warning: no use \"new\"");
 				}
 				now.data_type = typea.name;
-				//System.out.println("["+now.data_type+"]");
+				//System.err.println("["+now.data_type+"]");
 				now.data_array_dim = arr_dim;
 				now.left_value = false;
 			}
@@ -776,7 +776,7 @@ public class pro1 {
 		}
 		if (now.type.equals("while")){
 			if (now.son.get(0).data_type.equals("bool")&&now.son.get(1).data_array_dim==0){
-//				System.out.println("not bool");
+//				System.err.println("not bool");
 				//Nothing
 			} else{
 				throw new Exception("not bool in while");
@@ -831,9 +831,9 @@ public class pro1 {
 				}
 
 			}else {
-				System.out.println("ERROR");
-				System.out.println(scope_info.get(j).output_variable_type);
-				System.out.println(now.son.get(0).data_type);
+				System.err.println("ERROR");
+				System.err.println(scope_info.get(j).output_variable_type);
+				System.err.println(now.son.get(0).data_type);
 				throw new Exception("CE: return3");
 			}
 		}
@@ -856,11 +856,11 @@ public class pro1 {
 	public static void dfs6(node now,int i) throws Exception{
 		for (node item1: now.son){
 			if (item1.type.equals("class")){
-				//System.out.println(item1.name);
+				//System.err.println(item1.name);
 				for (node item2: item1.son){
 					if (item2.type.equals("variable")) {
 						varname item3 = item1.scope.get(item2.son.get(1).name);
-						//System.out.println(item2.son.get(1).name);
+						//System.err.println(item2.son.get(1).name);
 						if (item3.type.equals("int") && item3.array_dim == 0) {
 							item3.mem_position = item1.mem_size;
 							item1.mem_size += 1;
@@ -870,17 +870,17 @@ public class pro1 {
 							item1.mem_size += 1;
 						} else
 						if (item3.array_dim > 0 ){
-							//System.out.println(item3.array_dim);
+							//System.err.println(item3.array_dim);
 							item3.mem_position = item1.mem_size;
 							item1.mem_size += 1;
 						} else {
 							item3.mem_position = item1.mem_size;
 							item1.mem_size += 1;
 						}
-						//System.out.println("(" + item3.type + " " + item3.name + ")");
+						//System.err.println("(" + item3.type + " " + item3.name + ")");
 					}
 				}
-				//System.out.println(item1.mem_size);
+				//System.err.println(item1.mem_size);
 			}
 		}
 	}
@@ -888,9 +888,9 @@ public class pro1 {
 	public static instr_set dfs7(node now,int i) throws Exception{
 		//head
 //		for (int k=0;k<i;++k) {
-//			System.out.print("   .");
+//			System.err.print("   .");
 //		}
-//		System.out.println(now.name);
+//		System.err.println(now.name);
 		if (now.has_scope){
 			scope_info.add(now);
 		}
@@ -962,11 +962,14 @@ public class pro1 {
 			return ans;
 		}
 		if (now.type.equals("function")||now.type.equals("self_function")){
-//			System.out.println("visit function");
+//			System.err.println("visit function");
 			instr_set ans = new instr_set();
 			simple_instr functag = new simple_instr();
 			if (i==2){
-				functag.setFunc(scope_info.get(1).name+"."+now.name,now.son.size());
+				if (now.type.equals("self_function"))
+				functag.setFunc(scope_info.get(1).name+"."+now.name,now.son.size()+2);
+				else
+				functag.setFunc(scope_info.get(1).name+"."+now.name,now.son.size()+1);
 			} else {
 				functag.setFunc(now.name,now.son.size());
 			}
@@ -1017,7 +1020,7 @@ public class pro1 {
 
 		}
 		if (now.type.equals("statements")){
-			//System.out.println("visit sts");
+			//System.err.println("visit sts");
 			instr_set ans = new instr_set();
 			for (node item:now.son){
 				instr_set res = dfs7(item,i+1);
@@ -1029,13 +1032,13 @@ public class pro1 {
 			return ans;
 		}else
 		if (now.type.equals("variable")|| now.type.equals("input_variable")) {
-//			System.out.println(now.son.get(1).name);
+//			System.err.println(now.son.get(1).name);
 			varname var = scope_info.get(scope_info.size()-1).scope.get(now.son.get(1).name);
 			if (now.son.size()==3&&now.type.equals("variable")){
 				instr_set ans = new instr_set();
 				instr_set res = dfs7(now.son.get(2),i+1);
-				//System.out.println(now.son.get(1).name);
-				//System.out.println(scope_info.size());
+				//System.err.println(now.son.get(1).name);
+				//System.err.println(scope_info.size());
 				var.activate = true;
 				if (res!=null){
 					ans.list.addAll(res.list);
@@ -1072,7 +1075,7 @@ public class pro1 {
 			if (now.left_value){
 				instr_set ans = new instr_set();
 				int j = scope_info.size()-1;
-//				System.out.println(now.name);
+//				System.err.println(now.name);
 
 				while (scope_info.get(j).scope.get(now.name)==null
 						||
@@ -1125,7 +1128,7 @@ public class pro1 {
 			else{
 				throw new Exception("IR Gen");
 //				int j = scope_info.size()-1;
-//				System.out.println(now.name);
+//				System.err.println(now.name);
 //				while (scope_info.get(j).scope.get(now.name)==null
 //						||
 //						(!scope_info.get(j).scope.get(now.name).activate)
@@ -2352,7 +2355,7 @@ public class pro1 {
 //					throw new Exception("Warning: no use \"new\"");
 //				}
 //				now.data_type = typea.name;
-//				//System.out.println("["+now.data_type+"]");
+//				//System.err.println("["+now.data_type+"]");
 //				now.data_array_dim = arr_dim;
 //				now.left_value = false;
 			}
@@ -2697,7 +2700,7 @@ public class pro1 {
 			//this is safety belt
 			KeepedLine.get(j).addAll(MakedLine.get(j));
 
-			//System.out.println(RegList.get(j).generate_String()+"\t\t"+KeepedLine.get(j));
+			//System.err.println(RegList.get(j).generate_String()+"\t\t"+KeepedLine.get(j));
 		}
 		/* upper is generating keeped line
 		todo add optimizor here */
@@ -2732,17 +2735,17 @@ public class pro1 {
 				//System.err.println("end_coloring");
 				colornum -= 1;
 			} else{
-				//System.out.println(occupied);
+				//System.err.println(occupied);
 				RegOccupyList.add(occupied);
 				colornum += 1;
 			}
 		}
 		for (int j=0;j<RegList.size();++j){
-			//if (j%10==0) System.out.println();
-			//System.out.print("\t"+RegList.get(j).view()+" :"+RegColor[j]);
+			//if (j%10==0) System.err.println();
+			//System.err.print("\t"+RegList.get(j).view()+" :"+RegColor[j]);
 
 		}
-		//System.out.println("\n"+colornum);
+		//System.err.println("\n"+colornum);
 	}
 	//todo pause codeGen ,fix reg because of some bugs
 	public static String data_addr_name(simple_addr addr) throws Exception{
@@ -2832,7 +2835,7 @@ public class pro1 {
 		if (addr_type(addr.op1)==2&&addr_type(addr.offset)==2) {
 			ans.add("mov " + reg + "," + addr_name(addr.offset));
 			if (addr.type.equals("Mem x8"))
-				ans.add("shl " + reg + " 3");
+				ans.add("shl " + reg + ",3");
 			ans.add("add " + reg + "," + addr_name(addr.op1));
 			if (addr.type.equals("Mem x8"))
 				move_addr2_cache = "qword["+reg+"]";
@@ -2979,7 +2982,9 @@ public class pro1 {
 		} else{
 			ans.add("mov "+codeGen_Reg.ConstReg2+","+addr_name(instr.addr3));
 		}
-		ans.add("idiv "+codeGen_Reg.ConstReg2);
+		ans.add("mov qword[rbp-8], rdx");
+		ans.add("mov rdx,0");
+		ans.add("idiv qword[rbp-8]");
 		if (addr_type(instr.addr1)==3){
 			simple_addr addr = instr.addr1;
 			ans.addAll(move_addr_into2(codeGen_Reg.ConstReg2,addr));
@@ -3006,7 +3011,9 @@ public class pro1 {
 		} else{
 			ans.add("mov "+codeGen_Reg.ConstReg2+","+addr_name(instr.addr3));
 		}
-		ans.add("idiv "+codeGen_Reg.ConstReg2);
+		ans.add("mov qword[rbp-8], rdx");
+		ans.add("mov rdx,0");
+		ans.add("idiv qword[rbp-8]");
 		if (addr_type(instr.addr1)==3){
 			simple_addr addr = instr.addr1;
 			ans.addAll(move_addr_into2(codeGen_Reg.ConstReg1,addr));
@@ -3523,6 +3530,10 @@ public class pro1 {
 //			ans.add("push "+move_addr2_cache+"");
 		} else {
 			//ans.add("push "+addr_name(instr.addr2));
+			if (addr_type(instr.addr1)==2){
+				ans.add("mov "+codeGen_Reg.ConstReg2+","+"qword[rbp+"+((int)(instr.addr2.num+2)*8)+"]");
+				ans.add("mov "+addr_name(instr.addr1)+","+codeGen_Reg.ConstReg2);
+			} else
 			ans.add("mov "+addr_name(instr.addr1)+","+"qword[rbp+"+((int)(instr.addr2.num+2)*8)+"]");
 		}
 		return ans;
@@ -4070,7 +4081,7 @@ public class pro1 {
 			nasm_code.add(codeGen_rename.renaming(IR_.list.get(0).func_num)+": ;" +IR_.list.get(0).func_num);
 			nasm_code.add("push rbp");
 			nasm_code.add("mov rbp,rsp");
-			nasm_code.add("sub rsp,"+(((colornum+3)/2)*2+IR_.list.get(0).addr2.num%2)*8);
+			nasm_code.add("sub rsp,"+(((colornum+5)/2)*2+IR_.list.get(0).addr2.num%2)*8);
 
 			for (int i=1;i<IR_.list.size();++i){
 				simple_instr instr = IR_.list.get(i);
@@ -4228,7 +4239,7 @@ public class pro1 {
 				else if (instr.name.equals("call substring")){
 					nasm_code.addAll(call_substring_cg(instr,i));
 				}
-				//nasm_code.add(";"+instr.view());
+				nasm_code.add(";"+instr.view());
 			}
 			for (String item: nasm_code){
 				os1.write((item+"\n").getBytes());
@@ -4297,18 +4308,18 @@ public class pro1 {
 	}
 	public static void view1(node now,int i)throws Exception{
 		for (int j=0;j<i;++j){
-			System.out.print("    ");
+			System.err.print("    ");
 		}
-		System.out.print(now.type + " " + now.name);
+		System.err.print(now.type + " " + now.name);
 		if (now.type.equals("function")){
-			System.out.print(" "+now.output_variable_type+" ");
-			System.out.print(now.output_variable_array_dim);
+			System.err.print(" "+now.output_variable_type+" ");
+			System.err.print(now.output_variable_array_dim);
 			for (int j=0;j<now.input_variable_type.size();++j){
-				System.out.print(" "+now.input_variable_type.get(j)+" ");
-				System.out.print(now.input_variable_array_dim.get(j));
+				System.err.print(" "+now.input_variable_type.get(j)+" ");
+				System.err.print(now.input_variable_array_dim.get(j));
 			}
 		}
-		System.out.println();
+		System.err.println();
 		for (HashMap.Entry<String,varname> item:now.scope.entrySet()){
 			if (item.getValue().location!=null){
 				view1(item.getValue().location,i+1);
@@ -4317,9 +4328,9 @@ public class pro1 {
 	}
 	public static void view2(node now,int i) throws Exception{
 		if (now.has_scope){
-			System.out.print(now.name);
-			System.out.print("-");
-			System.out.println(now.type);
+			System.err.print(now.name);
+			System.err.print("-");
+			System.err.println(now.type);
 		}
 		for (node item:now.son){
 			view2(item,i+1);
@@ -4327,33 +4338,33 @@ public class pro1 {
 	}
 	public static void view3(node now,int i)throws Exception{
 		for (int j=0;j<i;++j){
-			System.out.print("    ");
+			System.err.print("    ");
 		}
-		System.out.print(now.type + " " + now.name);
+		System.err.print(now.type + " " + now.name);
 		if (now.type.equals("function")){
-			System.out.print(" "+now.output_variable_type+" ");
-			System.out.print(now.output_variable_array_dim);
+			System.err.print(" "+now.output_variable_type+" ");
+			System.err.print(now.output_variable_array_dim);
 			for (int j=0;j<now.input_variable_type.size();++j){
-				System.out.print(" "+now.input_variable_type.get(j)+" ");
-				System.out.print(now.input_variable_array_dim.get(j));
+				System.err.print(" "+now.input_variable_type.get(j)+" ");
+				System.err.print(now.input_variable_array_dim.get(j));
 			}
 		}
-		System.out.println();
+		System.err.println();
 		if (now.has_scope){
 			for (int j=0;j<i;++j){
-				System.out.print("    ");
+				System.err.print("    ");
 			}
-			System.out.print(" ");
+			System.err.print(" ");
 			for (varname item:now.scope.values()){
-				System.out.print("(");
-				System.out.print(item.type);
-				System.out.print(" ");
-				System.out.print(item.name);
-				System.out.print(" ");
-				System.out.print(item.array_dim);
-				System.out.print(")");
+				System.err.print("(");
+				System.err.print(item.type);
+				System.err.print(" ");
+				System.err.print(item.name);
+				System.err.print(" ");
+				System.err.print(item.array_dim);
+				System.err.print(")");
 			}
-			System.out.println();
+			System.err.println();
 		}
 		for (HashMap.Entry<String,varname> item:now.scope.entrySet()){
 			if (item.getValue().location!=null){
@@ -4364,32 +4375,32 @@ public class pro1 {
 	public static void view4(node now,int i)throws Exception{
 		if (now.has_scope){
 			for (int j=0;j<i;++j){
-				System.out.print("    ");
+				System.err.print("    ");
 			}
-			System.out.print(now.type + " " + now.name);
+			System.err.print(now.type + " " + now.name);
 			if (now.type.equals("function")){
-				System.out.print(" "+now.output_variable_type+" ");
-				System.out.print(now.output_variable_array_dim);
+				System.err.print(" "+now.output_variable_type+" ");
+				System.err.print(now.output_variable_array_dim);
 				for (int j=0;j<now.input_variable_type.size();++j){
-					System.out.print(" "+now.input_variable_type.get(j)+" ");
-					System.out.print(now.input_variable_array_dim.get(j));
+					System.err.print(" "+now.input_variable_type.get(j)+" ");
+					System.err.print(now.input_variable_array_dim.get(j));
 				}
 			}
-			System.out.println();
+			System.err.println();
 			for (int j=0;j<i;++j){
-				System.out.print("    ");
+				System.err.print("    ");
 			}
-			System.out.print(" ");
+			System.err.print(" ");
 			for (varname item:now.scope.values()){
-				System.out.print("(");
-				System.out.print(item.type);
-				System.out.print(" ");
-				System.out.print(item.name);
-				System.out.print(" ");
-				System.out.print(item.array_dim);
-				System.out.print(")");
+				System.err.print("(");
+				System.err.print(item.type);
+				System.err.print(" ");
+				System.err.print(item.name);
+				System.err.print(" ");
+				System.err.print(item.array_dim);
+				System.err.print(")");
 			}
-			System.out.println();
+			System.err.println();
 		}
 		for (node item:now.son){
 			if (now.has_scope) {
@@ -4404,7 +4415,7 @@ public class pro1 {
 			for (varname item: now.scope.values()){
 				if (item.activate) {
 					item.activate = false;
-					//System.out.println(item.type+" "+item.name);
+					//System.err.println(item.type+" "+item.name);
 				}
 			}
 		}
@@ -4414,14 +4425,14 @@ public class pro1 {
 	}
 	public static void view5(node now,int i)throws Exception{
 		for (int f1=0;f1<i;++f1){
-			System.out.print("   :");
+			System.err.print("   :");
 		}
-		System.out.print(now.type+",");
-		System.out.print(now.name+",");
-		System.out.print(now.data_type+",");
-		//System.out.print("data_arr_dim");
-		System.out.print(now.data_array_dim);
-		System.out.print("\n");
+		System.err.print(now.type+",");
+		System.err.print(now.name+",");
+		System.err.print(now.data_type+",");
+		//System.err.print("data_arr_dim");
+		System.err.print(now.data_array_dim);
+		System.err.print("\n");
 		for (node item:now.son){
 			view5(item,i+1);
 		}
@@ -4438,17 +4449,17 @@ public class pro1 {
 			parser.setErrorHandler(new BailErrorStrategy());
 			ParseTree tree = parser.mx(); // calc is the starting rule
 
-			//System.out.println("LISP:");
-			//System.out.println(tree.toStringTree(parser));
-			//System.out.println();
+			//System.err.println("LISP:");
+			//System.err.println(tree.toStringTree(parser));
+			//System.err.println();
 
-			//System.out.println("Visitor:");
+			//System.err.println("Visitor:");
 			EvalVisitor evalByVisitor = new EvalVisitor();
 			root1 = evalByVisitor.visit(tree);
-			////System.out.println();
+			////System.err.println();
 			dfs(root1, 0);
-			//System.out.println();
-			//System.out.println("----");
+			//System.err.println();
+			//System.err.println("----");
 			//--------------------------------
 			{
 				{
@@ -4506,24 +4517,24 @@ public class pro1 {
 					root1.scope.put(newname.name, newname);
 				}
 			}
-			//System.out.println("dfs1");
+			//System.err.println("dfs1");
 			dfs1(root1, 0);
-//			System.out.println("dfs2");
+//			System.err.println("dfs2");
 			dfs2(root1, 0);
-			////System.out.println();
-//			System.out.println("dfs3");
+			////System.err.println();
+//			System.err.println("dfs3");
 			dfs3(root1, 0);
-			//System.out.println("view1");
+			//System.err.println("view1");
 			//view1(root1, 0);
-			//System.out.println("view2");
+			//System.err.println("view2");
 			//view2(root1, 0);
-//			System.out.println("dfs4");
+//			System.err.println("dfs4");
 			dfs4(root1, 0);
-			//System.out.println("view3");
+			//System.err.println("view3");
 			//view3(root1, 0);
-			//System.out.println("view4");
+			//System.err.println("view4");
 			//view4(root1, 0);
-//			System.out.println("dfs5");
+//			System.err.println("dfs5");
 			dfs5(root1, 0);
 			if(root1.son.size()==0){
 				throw new Exception("Empty");
@@ -4545,17 +4556,17 @@ public class pro1 {
 			//throw eee;
 			System.exit(-1);
 		}
-		//System.out.println("OK");
+		//System.err.println("OK");
 		{
-			//System.out.println("\nun activate");
+			//System.err.println("\nun activate");
 			unactivate(root1,0);
-			//System.out.println("\ndfs6");
+			//System.err.println("\ndfs6");
 			dfs6(root1,0);
 			//view5(root1,0);
 
 
 			instr_set ir = dfs7(root1,0);
-			//System.out.print(ir.view());
+			//System.err.print(ir.view());
 
 			IR_.list.addAll(ir.list);
 		}
@@ -4567,15 +4578,15 @@ public class pro1 {
 				RegNum  = new HashMap<String,Integer>();
 				RegList = new ArrayList<simple_addr>();
 				instr_set item = IR_List.get(ii);
-				//System.out.print("\n"+item.view());
+				System.err.print("\n"+item.view());
 				IR_ = item;
 //				path = new int[IR_.list.size()][IR_.list.size()];
 				tag_line_num = new HashMap<Integer, Integer>();
 				collect_tag_line_num();
 //				for (int i=0;i<IR_.list.size();++i){
-//					//System.out.print("step"+i+"\t:\t");
+//					//System.err.print("step"+i+"\t:\t");
 //					pathview(i,i);
-//					//System.out.println();
+//					//System.err.println();
 //				}
 				line_last = new ArrayList<HashSet<Integer>>();
 				line_next = new ArrayList<HashSet<Integer>>();

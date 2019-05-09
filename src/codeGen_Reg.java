@@ -16,8 +16,8 @@ public class codeGen_Reg {
 		add(1);
 //		add(2);//rdx
 		add(3);
-//		add(4);
-//		add(5);
+//		add(4);//rsp
+//		add(5);//rbp
 		add(6);
 		add(7);
 		add(8);
@@ -61,7 +61,7 @@ public class codeGen_Reg {
 		ans.add(";push all todo");
 		for (int f1=0;f1<num;++f1)if (reguse.contains(f1)){
 			//ans.add("push "+public_reg_name.get(myreg.get(f1)));
-			ans.add("mov qword [ rbp - "+((f1+1)*8)+"], "+R(f1+1));
+			ans.add("mov qword [ rbp - "+((f1+2)*8)+"], "+R(f1+1));
 		}
 		ans.add(";push all done");
 		return ans;
@@ -74,7 +74,7 @@ public class codeGen_Reg {
 		ans.add(";pop all todo");
 		for (int f1=0;f1<num;++f1)if (reguse.contains(f1)){
 			//ans.add("push "+public_reg_name.get(myreg.get(f1)));
-			ans.add("mov "+R(f1+1)+",qword [ rbp - "+((f1+1)*8)+"]");
+			ans.add("mov "+R(f1+1)+",qword [ rbp - "+((f1+2)*8)+"]");
 		}
 		ans.add(";pop all done");
 		return ans;
@@ -84,7 +84,7 @@ public class codeGen_Reg {
 		if (num <= myreg.size()){
 			return public_reg_name.get(myreg.get(num-1));
 		} else{
-			return " qword [rbp - "+((num)*8)+" ] ";
+			return " qword [rbp - "+((num+1)*8)+" ] ";
 		}
 	}
 	public static int R_type(int num){
